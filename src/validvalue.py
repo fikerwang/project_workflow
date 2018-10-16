@@ -1,7 +1,9 @@
 
 
-class ValidProcessResult:
+class ValidStepStatus:
     
     SUCCESSFUL = 'OK'
-    FAILED = 'ERROR'
-    UNDEFINED = 'UNDEFINED'
+    FAILED = 'FAILED'
+    PENDING = 'PENDING'
+    HOLD = 'HOLD'
+    PROCESSING = 'PROCESSING'

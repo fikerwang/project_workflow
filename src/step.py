@@ -1,10 +1,10 @@
 from wfexception import *
 from validvalue import *
 
-class Node:
+class Step:
     
-    def __init__(self,node_name):
-        self.__node_name = node_name
+    def __init__(self,step_name):
+        self.__step_name = step_name
         self.parent_node = list()
         self.sub_node = list()
         
@@ -15,11 +15,10 @@ class Node:
         self.__action = action
         
     def process(self):
-        self.result = self.__action.process()
-        
-        if self.result not in (ValidProcessResult.SUCCESS,ValidProcessResult.FAILED):
-            self.result = ValidProcessResult.PROCESS_RUN_UNDEFINED
-            raise WFMissResultException(self.result)
+        try:
+            self.result = self.__action.process()
+        except Exception:
+            self.result = ValidStepStatus.FAILED
         
     def add_parent_node(self,parent_node):    
         self.parent_node.append(parent_node)
